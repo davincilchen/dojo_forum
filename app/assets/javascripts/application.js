@@ -13,3 +13,9 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+//= for bootstrap 20180420-02
+
+//= require jquery
+//= require bootstrap-sprockets
