@@ -30,6 +30,24 @@
            <ul class="pull-right text-right nav navbar-nav">
              <!-- check user -->
              <% if current_user %>
+              <% if current_user.admin? %>
+
+              <% end %>
+              <% if current_user.avatar?%>
+                <li>
+                  <div class="navbar-user-image">
+                    <%= link_to tweets_user_path(current_user) do %>
+                      <%= image_tag current_user.avatar %>
+                    <% end %>
+                  </div>
+                </li>
+              <% else %>
+                <%= link_to user_path(current_user) do %>
+                  <span class="glyphicon glyphicon-picture"></span>
+                <% end %>
+                <li><p class="navbar-text"><%= link_to current_user.name, user_path(current_user) %></p></li>
+              <% end %>
+
               <ul class="pull-right text-right nav navbar-nav">
                 <li><p class="navbar-text"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></p></li>
               </form>
