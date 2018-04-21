@@ -40,6 +40,8 @@ gem 'jbuilder', '~> 2.5'
 
 #use devise 20180420
 gem 'devise'
+#Use 'carrierwave'  20180421
+gem 'carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

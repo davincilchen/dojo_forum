@@ -21,3 +21,7 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ignore some image 20180421
+/public/uploads
+/seed_img/*
