@@ -1,5 +1,9 @@
 class DojosController < ApplicationController
+
+  before_action :set_dojo, only:[:show, :edit, :update, :destroy]
+
   def index
+    @dojos = Dojo.all
   end
 
   def new
@@ -26,7 +30,13 @@ class DojosController < ApplicationController
   end
 
   def update
-
+   if @dojo.update(dojo_params)
+      flash[:notice] = "Artical was successfully updated"
+      redirect_to dojo_path(@dojo)
+    else
+      flash.now[:alert] = "Artical was failed to update"
+      render :edit
+    end
   end
 
   def destroy
@@ -42,6 +52,11 @@ class DojosController < ApplicationController
                                 :description,
                                 :image
                                 )
+  end
+
+
+  def set_dojo
+    @dojo = Dojo.find(params[:id])
   end
 
 end
