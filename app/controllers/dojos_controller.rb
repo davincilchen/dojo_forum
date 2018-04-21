@@ -40,7 +40,9 @@ class DojosController < ApplicationController
   end
 
   def destroy
-
+    @dojo.destroy
+    redirect_to dojos_path
+    flash[:alert] = "Artical was deleted"
   end
 
 
