@@ -61,7 +61,7 @@
           <tr>
             <td><%= dojo.title %></td>
             <td>Published</td>
-            <td><%= dojo.created_at %></td>
+            <td><%= dojo.created_at.strftime("%F, %I:%M %p") %></td>
             <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
             <td><%= link_to 'Destroy', dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
           </tr>
