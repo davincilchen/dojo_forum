@@ -36,7 +36,7 @@
               <% if current_user.avatar?%>
                 <li>
                   <div class="navbar-user-image">
-                    <%= link_to tweets_user_path(current_user) do %>
+                    <%= link_to user_path(current_user) do %>
                       <%= image_tag current_user.avatar %>
                     <% end %>
                   </div>
