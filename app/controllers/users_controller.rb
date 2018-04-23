@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    puts "1--0-0-qeaq"
     @user = User.find(params[:id])
   end
 
