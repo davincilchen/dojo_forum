@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @tab = params[:tab]
-    @dojos = current_user.dojos
+    if @tab == "my_post" || !@tab
+      @dojos = current_user.dojos
+    end
   end 
 
   def edit
