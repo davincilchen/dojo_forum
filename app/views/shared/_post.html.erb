@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="dojo-item">
+      <div class = "col-md-2 col-md-offset-0">
+        <div class="dojo-user-avatar">
+          <div class="dojo-user-image">
+            <% if dojo.user.avatar? %>
+              <%= link_to user_path(dojo.user) do %>
+                <%= image_tag dojo.user.avatar, class: "img-responsive  img-rounded" %>
+              <% end %>
+            <% else %>
+               <span class="glyphicon glyphicon-picture"></span>
+            <% end %>
+            <p><span><%= link_to dojo.user.name, user_path(dojo.user) %></span></p>
+          </div>
+        </div>
+      </div>
+      <div class = "col-md-10 col-md-offset-0">
+        <div class="caption">
+          <div class="post-image">
+             <% if dojo.image? %>
+                <%= image_tag dojo.image, class: "img-responsive  img-rounded" %>
+            <% else %>
+               <span class="glyphicon glyphicon-picture"></span>
+            <% end %>
+          </div>
+          <br>
+          <p><%= truncate(dojo.description, length: 320)%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

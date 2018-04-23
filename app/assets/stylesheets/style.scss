@@ -34,3 +34,45 @@
 .user-profile-image img{
   width: 260px;
 }
+
+
+/* ---------------- */
+
+
+.dojo-item {
+  border: 1px solid #6495DD;
+  height: 300px;
+  margin-bottom: 15px;
+}
+
+
+.dojo-user-avatar {
+  border-right: 1px solid #6495DD;
+  width: 165px;
+  height: 300px;
+}
+
+.dojo-user-image {
+  float: left;
+  width: 75px;
+  height: 75px;
+  margin: 15px;
+  margin-top: 30px;
+  margin-left: 35px;
+  margin-right: 60px;
+}
+
+.post-image  img{
+  height: 160px;
+}
+
+
+.dojo-user-image  img{
+  width: 70px;
+  height: 70px;
+}
+
+.caption {
+  margin-top: 15px;
+  margin-left: 15px;
+}

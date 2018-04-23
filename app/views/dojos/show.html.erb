@@ -1,1 +1,6 @@
-<h1>show</h1>
+<div class="container">
+  <div class="row">
+    <h2><%= @dojo.title %></h2>
+  </div>
+</div>
+<%= render partial: "shared/post", locals: {dojo: @dojo}%>
