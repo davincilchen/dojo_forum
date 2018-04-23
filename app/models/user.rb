@@ -14,6 +14,9 @@ class User < ApplicationRecord
   validates_presence_of :name
 
 
+  has_many :dojos, dependent: :destroy
+
+
 
   # admin? 判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
