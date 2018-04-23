@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @tab = params[:tab]
+    @dojos = current_user.dojos
   end 
 
   def edit

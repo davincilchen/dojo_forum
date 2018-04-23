@@ -11,7 +11,7 @@ class DojosController < ApplicationController
   end
 
   def create
-    @dojo = Dojo.new(dojo_params)
+    @dojo = current_user.dojos.build(dojo_params)
     if @dojo.save
       flash[:notice] = "Artical was successfully created"
       redirect_to dojos_path
