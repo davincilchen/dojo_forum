@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-
+  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_dojo, only: [:create, :update, :destroy]
 
   def create
-    @dojo = Dojo.find(params[:dojo_id])
     @comment = @dojo.comments.build(comment_params)
     @comment.user = current_user
     @comment.save!
@@ -10,11 +10,16 @@ class CommentsController < ApplicationController
   end
 
 
+  def update
+    if @comment.update(comment_params)
+      flash[:notice] = "Comment was successfully updated"
+    else
+      flash[:alert] = "Fail to update comment "
+    end
+    redirect_to dojo_path(@dojo)
+  end
 
   def destroy
-    @dojo = Dojo.find(params[:dojo_id])
-    @comment = Comment.find(params[:id])
-
     if @comment
       if @comment.user == current_user
         @comment.destroy
@@ -30,6 +35,14 @@ class CommentsController < ApplicationController
 
 
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def set_dojo
+    @dojo = Dojo.find(params[:dojo_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content)
