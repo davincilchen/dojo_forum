@@ -74,7 +74,7 @@
         <div class = "col-md-10 col-md-offset-0">
           <div class="comment-caption">
             <% if current_user == comment.user && @edit_type == "comment" && comment.id.to_s == @edit_id %>
-                <%= form_for [@dojo, comment] do |f| %>
+                <%= form_for [dojo, comment] do |f| %>
                   <div class="form-group">
                     <%= f.text_area :content, placeholder: comment.content, class: "form-control" %>
                   </div>

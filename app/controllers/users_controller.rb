@@ -3,8 +3,12 @@ class UsersController < ApplicationController
 
   def show
     @tab = params[:tab]
+    @edit_type = params[:edit_type]
+    @edit_id = params[:edit_id]
     if @tab == "my_post" || !@tab
-      @dojos = current_user.dojos
+      @dojos = @user.dojos
+    elsif @tab == "my_comment"
+      @comments = @user.comments
     end
   end 
 

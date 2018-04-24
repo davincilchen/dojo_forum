@@ -55,7 +55,7 @@
       </li>
     </ul>
 
-    <% if @tab == "my_post" || !@tab  %>
+    <% if @tab == "my_post" || !@tab  %> <!-- ============== tab ============== -->
       <table class="table table-striped table-condensed">
         <% @dojos.each do |dojo| %>
           <tr>
@@ -67,6 +67,43 @@
           </tr>
         <% end %>
       </table>
-    <% end %>
+    <% elsif @tab == "my_comment"%> <!-- ============== tab ============== -->
+      <br>
+      <div class = "col-md-12 col-md-offset-0">
+        <% @comments.each do |comment| %>
+          <div class="user-comment-item">
+            <div class="comment-caption">
+              <h3><%= comment.dojo.title %></h3>
+              <% if current_user == comment.user && @edit_type == "user" && comment.id.to_s == @edit_id %>
+                  <%= form_for [comment.dojo, comment] do |f| %>
+                    <div class="form-group">
+                      <%= f.text_area :content, placeholder: comment.content, class: "form-control" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.submit "Update", class: "btn btn-primary btn-sm" %>
+                    </div>
+                  <% end %>
+              <% else %>
+                <p><%= truncate(comment.content, length: 320)%></p>
+              <% end %>
+
+              <!-- edit, delete -->
+              <% if current_user == comment.user %>
+                <% if comment.id.to_s != @edit_id %>
+
+                  <%= link_to user_path(tab: "my_comment", edit_type: "user", edit_id: comment.id) do %>
+                    <span class="glyphicon glyphicon-edit"></span>
+                  <% end %>
+
+                  <%= link_to dojo_comment_path(comment.dojo, comment.id), method: :delete, data: {confirm:"Are you sure?"} do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div> <!-- comment-caption -->
+          </div> <!-- user-comment-item -->
+        <% end %>
+      </div> <!-- col-md -->
+    <% end %> <!-- table -->
    </div>
 </div>
