@@ -23,6 +23,8 @@ class DojosController < ApplicationController
 
   def show
     @comment = Comment.new
+    @edit_type = params[:edit_type]
+    @edit_id = params[:edit_id]
   end
 
 
