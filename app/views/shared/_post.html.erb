@@ -50,6 +50,12 @@
         <div class = "col-md-10 col-md-offset-0">
           <div class="comment-caption">
             <p><%= truncate(comment.content, length: 320)%></p>
+            <%= link_to dojo_path(dojo,edit_type: "comment",edit_id: comment.id) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+            <% end %>
+            <%= link_to dojo_comment_path(dojo, comment.id), method: :delete, data: {confirm:"Are you sure?"} do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
           </div>
         </div>
       </div>
