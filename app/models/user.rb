@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
 
   has_many :dojos, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 
 
