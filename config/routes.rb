@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   end
 
-  resources :dojos
+  resources :dojos do
+    resources :comments
+  end
 
   root "dojos#index"
 end
