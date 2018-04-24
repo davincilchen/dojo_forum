@@ -25,7 +25,31 @@
             <% end %>
           </div>
           <br>
-          <p><%= truncate(dojo.description, length: 320)%></p>
+            <% if current_user == dojo.user && @edit_type == "post"  %>
+              <%= form_for dojo do |f| %>
+                <div class="form-group">
+                  <%= f.text_area :description, placeholder: dojo.description, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.submit "Update",class: "btn btn-primary btn-sm" %>
+                </div>
+              <% end %>
+            <% else %>
+              <p><%= truncate(dojo.description, length: 320)%></p>
+            <% end %>
+
+            <!-- edit, delete -->
+            <% if current_user == dojo.user %>
+              <% if @edit_type != "post" %>
+                <%= link_to dojo_path(dojo, edit_type: "post",edit_id: dojo.id) do %>
+                  <span class="glyphicon glyphicon-edit"></span>
+                <% end %>
+
+                <%= link_to dojo_path(dojo), method: :delete, data: {confirm:"Are you sure?"} do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+              <% end %>
+            <% end %>
         </div>
       </div>
     </div>
@@ -49,14 +73,13 @@
         </div>
         <div class = "col-md-10 col-md-offset-0">
           <div class="comment-caption">
-
             <% if current_user == comment.user && @edit_type == "comment" && comment.id.to_s == @edit_id %>
                 <%= form_for [@dojo, comment] do |f| %>
                   <div class="form-group">
                     <%= f.text_area :content, placeholder: comment.content, class: "form-control" %>
                   </div>
                   <div class="form-group">
-                    <%= f.submit class: "btn btn-primary" %>
+                    <%= f.submit "Update", class: "btn btn-primary btn-sm" %>
                   </div>
                 <% end %>
             <% else %>
@@ -67,7 +90,7 @@
             <% if current_user == comment.user %>
               <% if comment.id.to_s != @edit_id %>
 
-                <%= link_to dojo_path(dojo,edit_type: "comment",edit_id: comment.id) do %>
+                <%= link_to dojo_path(dojo,edit_type: "comment", edit_id: comment.id) do %>
                   <span class="glyphicon glyphicon-edit"></span>
                 <% end %>
 
