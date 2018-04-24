@@ -4,3 +4,16 @@
   </div>
 </div>
 <%= render partial: "shared/post", locals: {dojo: @dojo}%>
+
+<br>
+<div class="container">
+  <%= form_for [@dojo, @comment] do |f| %>
+      <div class="form-group">
+        <%= f.text_area :content, placeholder: "comment.....", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+      </div>
+  <% end %>
+</div>
