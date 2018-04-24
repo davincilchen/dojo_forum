@@ -29,5 +29,31 @@
         </div>
       </div>
     </div>
+
+    <!-- comments -->
+    <% dojo.comments.each do |comment|%>
+      <div class="dojo-comment-item">
+        <div class = "col-md-2 col-md-offset-0">
+          <div class="comment-user-avatar">
+            <div class="dojo-user-image">
+              <% if comment.user.avatar? %>
+                <%= link_to user_path(comment.user) do %>
+                  <%= image_tag comment.user.avatar, class: "img-responsive  img-rounded" %>
+                <% end %>
+              <% else %>
+                 <span class="glyphicon glyphicon-picture"></span>
+              <% end %>
+              <p><span><%= link_to comment.user.name, user_path(comment.user) %></span></p>
+            </div>
+          </div>
+        </div>
+        <div class = "col-md-10 col-md-offset-0">
+          <div class="comment-caption">
+            <p><%= truncate(comment.content, length: 320)%></p>
+          </div>
+        </div>
+      </div>
+    <%end%>
+
   </div>
 </div>
