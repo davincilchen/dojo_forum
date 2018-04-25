@@ -1,2 +1,6 @@
-<% html = j( render :partial => "shared/dojo_title_operation", :locals => { :dojo => @dojo } ) %>
-$("#dojo_title_operation").html("<%= html %>")
+<% if @from_page == "user"%>
+  $("#collect-dojo-id-<%= @dojo.id %>").remove();
+<% else %>
+  <% html = j( render :partial => "shared/dojo_title_operation", :locals => { :dojo => @dojo } ) %>
+  $("#dojo_title_operation").html("<%= html %>");
+<% end %>

@@ -107,11 +107,11 @@
     <% elsif @tab == "my_collect"  %> <!-- ============== tab ============== -->
       <table class="table table-striped table-condensed">
         <% @collects.each do |collect| %>
-          <tr>
+          <tr id=collect-dojo-id-<%= collect.dojo.id %>>
             <td><h4><%= collect.dojo.title %></h4></td>
             <% if @user == current_user %>
               <td>
-                <%= link_to 'Uncollect', uncollect_dojo_path(collect.dojo, page: "user"), method: :post, class: "btn btn-info .btn-xs" %>
+                <%= link_to 'Uncollect', uncollect_dojo_path(collect.dojo, page: "user"), remote: true, method: :post, class: "btn btn-info .btn-xs" %>
               </td>
             <% end %>
           </tr>
