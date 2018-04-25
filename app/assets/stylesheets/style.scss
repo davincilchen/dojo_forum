@@ -105,3 +105,17 @@
   height: 180px;
   margin-bottom: 10px;
 }
+
+
+/* ===== 表格 ===== */
+
+
+
+.my-table td:last-child {
+    width: 80px;
+    vertical-align: middle;
+}
+
+.borderless td, .borderless th {
+  border-top: none !important;
+}
