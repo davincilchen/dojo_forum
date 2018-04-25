@@ -111,7 +111,7 @@
             <td><h4><%= collect.dojo.title %></h4></td>
             <% if @user == current_user %>
               <td>
-                <%= link_to 'Uncollect', uncollect_dojo_path(collect.dojo), method: :post, class: "btn btn-info .btn-xs" %>
+                <%= link_to 'Uncollect', uncollect_dojo_path(collect.dojo, page: "user"), method: :post, class: "btn btn-info .btn-xs" %>
               </td>
             <% end %>
           </tr>

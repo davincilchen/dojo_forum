@@ -54,15 +54,14 @@ class DojosController < ApplicationController
     #@dojo.collects.create!(user_id: current_user.id)
     #Favorite.create(dojo: @dojo, user: current_user)
     #current_user.collects.create(dojo: @dojo)
-    redirect_to dojo_path(@dojo)
   end
 
 
   # POST /dojos/:id/uncollect
   def uncollect
+    @from_page = params[:page]
     collects = Collect.where(dojo: @dojo, user: current_user)
     collects.destroy_all
-    redirect_to dojo_path(@dojo)
   end
 
 

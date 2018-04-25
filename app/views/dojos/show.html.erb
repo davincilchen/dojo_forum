@@ -1,13 +1,8 @@
 <div class="container">
   <div class="row">
-    <table class="my-table table borderless">
-      <tr>
-        <td><h2><%= @dojo.title %></h2></td>
-        <td>
-          <%= render partial: "shared/collect", locals: {dojo: @dojo}%>
-        </td>
-      </tr>
-    </table>
+    <div id="dojo_title_operation">
+      <%= render partial: "shared/dojo_title_operation", locals: {dojo: @dojo}%>
+    </div>
   </div>
 </div>
 <%= render partial: "shared/post", locals: {dojo: @dojo}%>

@@ -1,5 +1,5 @@
 <% if dojo.is_collected?(current_user) %>
-  <%= link_to 'Uncollect', uncollect_dojo_path(dojo), method: :post, class: "btn btn-info" %>
+  <%= link_to 'Uncollect', uncollect_dojo_path(dojo), remote: true, method: :post, class: "btn btn-info btn-collect" %>
 <% else %>
-  <%= link_to 'Colloect', collect_dojo_path(dojo), method: :post, class: "btn btn-primary" %>
+  <%= link_to 'Colloect', collect_dojo_path(dojo), remote: true, method: :post, class: "btn btn-primary btn-collect" %>
 <% end %>
