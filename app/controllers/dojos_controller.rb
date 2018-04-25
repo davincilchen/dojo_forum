@@ -1,6 +1,6 @@
 class DojosController < ApplicationController
 
-  before_action :set_dojo, only:[:show, :edit, :update, :destroy]
+  before_action :set_dojo, only:[:show, :edit, :update, :destroy, :collect, :uncollect]
 
   def index
     @dojos = Dojo.all
@@ -48,6 +48,22 @@ class DojosController < ApplicationController
     flash[:alert] = "Artical was deleted"
   end
 
+  # POST /dojos/:id/collect
+  def collect
+    @dojo.collects.create!(user: current_user)
+    #@dojo.collects.create!(user_id: current_user.id)
+    #Favorite.create(dojo: @dojo, user: current_user)
+    #current_user.collects.create(dojo: @dojo)
+    redirect_to dojo_path(@dojo)
+  end
+
+
+  # POST /dojos/:id/uncollect
+  def uncollect
+    collects = Collect.where(dojo: @dojo, user: current_user)
+    collects.destroy_all
+    redirect_to dojo_path(@dojo)
+  end
 
 
   private

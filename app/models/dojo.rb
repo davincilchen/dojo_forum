@@ -9,4 +9,9 @@ class Dojo < ApplicationRecord
   has_many :collects, dependent: :destroy
   has_many :collected_users, through: :collects, source: :user
 
+
+  def is_collected?(user)
+    self.collected_users.include?(user)
+  end
+
 end

@@ -10,6 +10,11 @@ Rails.application.routes.draw do
 
   resources :dojos do
     resources :comments
+
+    member do
+      post :collect
+      post :uncollect
+    end
   end
 
   root "dojos#index"
