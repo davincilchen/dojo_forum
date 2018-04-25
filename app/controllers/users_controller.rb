@@ -9,6 +9,8 @@ class UsersController < ApplicationController
       @dojos = @user.dojos
     elsif @tab == "my_comment"
       @comments = @user.comments
+    elsif @tab == "my_collect"
+      @collects = @user.collects
     end
   end 
 

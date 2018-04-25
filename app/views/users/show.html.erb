@@ -102,8 +102,21 @@
               <% end %>
             </div> <!-- comment-caption -->
           </div> <!-- user-comment-item -->
-        <% end %>
+        <% end %> <!-- comments.each -->
       </div> <!-- col-md -->
-    <% end %> <!-- table -->
-   </div>
+    <% elsif @tab == "my_collect"  %> <!-- ============== tab ============== -->
+      <table class="table table-striped table-condensed">
+        <% @collects.each do |collect| %>
+          <tr>
+            <td><h4><%= collect.dojo.title %></h4></td>
+            <% if @user == current_user %>
+              <td>
+                <%= link_to 'Uncollect', uncollect_dojo_path(collect.dojo), method: :post, class: "btn btn-info .btn-xs" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    <% end %> <!-- tab -->
+  </div>
 </div>
