@@ -54,5 +54,24 @@ namespace :dev do
     puts "create some fake comments"
   end
 
+ task fake_clean_collect: :environment do
+    Like.destroy_all
+    puts "Clean all collects"
+  end
+
+  task fake_collect: :environment do
+    i = 0
+    User.all.each do |user|
+      i = i +1
+      num = i % 5
+      num = 6-num
+      Dojo.all.sample(num).each do |dojo|
+        unless dojo.is_collected?(user)
+            dojo.collects.create(user: user)
+        end
+      end
+    end
+    puts "create some fake collects"
+  end
 
 end
