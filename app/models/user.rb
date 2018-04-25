@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
 
+ # 「使用者收藏很多文章」的多對多關聯
+  has_many :collects, dependent: :destroy
+  has_many :collected_dojos, through: :collects, source: :dojo
+
 
   # admin? 判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?

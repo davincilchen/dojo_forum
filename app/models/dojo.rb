@@ -6,4 +6,7 @@ class Dojo < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  has_many :collects, dependent: :destroy
+  has_many :collected_users, through: :collects, source: :user
+
 end
