@@ -71,6 +71,7 @@ class DojosController < ApplicationController
     params.require(:dojo).permit(:title,
                                 :description,
                                 :image,
+                                :authority,
                                 :category_ids => []
                                 )
   end
