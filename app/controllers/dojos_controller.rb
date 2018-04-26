@@ -33,8 +33,14 @@ class DojosController < ApplicationController
   end
 
   def update
-   if @dojo.update(dojo_params)
-      flash[:notice] = "Artical was successfully updated"
+    if params[:commit] == "Save Draft"
+      @dojo.post_status = "draft"
+    else
+      @dojo.post_status = "public"
+    end
+
+    if @dojo.update(dojo_params)
+      flash[:notice] = "Artical was successfully updated (#{@dojo.post_status} mode)"
       redirect_to dojo_path(@dojo)
     else
       flash.now[:alert] = "Artical was failed to update"
@@ -70,8 +76,9 @@ class DojosController < ApplicationController
   def dojo_params
     params.require(:dojo).permit(:title,
                                 :description,
-                                :image,
+                                :post_status,
                                 :authority,
+                                :image,
                                 :category_ids => []
                                 )
   end
