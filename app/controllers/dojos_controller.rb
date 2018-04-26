@@ -70,7 +70,8 @@ class DojosController < ApplicationController
   def dojo_params
     params.require(:dojo).permit(:title,
                                 :description,
-                                :image
+                                :image,
+                                :category_ids => []
                                 )
   end
 
