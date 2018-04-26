@@ -1,7 +1,13 @@
 class Admin::CategoriesController < ApplicationController
+  before_action :set_category, only: [:update, :destroy]
+
   def index
     @categories = Category.all
-    @category = Category.new
+    if params[:id]
+      set_category
+    else
+      @category = Category.new
+    end
   end
 
   def create
@@ -9,6 +15,21 @@ class Admin::CategoriesController < ApplicationController
 
     if ! Category.where('lower(name) = ?', @category.name.downcase).first
       if @category.save
+        redirect_to admin_categories_path, notice: "Category was successfully created"
+      else
+        @categories = Category.all
+        render :index
+      end
+    else
+      flash[:alert] = "Category was already exist"
+      @categories = Category.all
+      render :index
+    end
+  end
+
+  def update
+    if ! Category.where('lower(name) = ?', params[:category][:name].downcase).first
+      if @category.update(category_params)
         redirect_to admin_categories_path, notice: "Category was successfully created"
       else
         @categories = Category.all
