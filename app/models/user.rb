@@ -23,6 +23,10 @@ class User < ApplicationRecord
   has_many :collected_dojos, through: :collects, source: :dojo
 
 
+  ROLE = {
+    normal: "Normal",
+    admin: "Admin"
+  }
   # admin? 判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
