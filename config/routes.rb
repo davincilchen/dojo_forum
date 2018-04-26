@@ -18,4 +18,10 @@ Rails.application.routes.draw do
   end
 
   root "dojos#index"
+
+  namespace :admin do
+    resources :categories
+    root "categories#index"
+  end
+
 end
