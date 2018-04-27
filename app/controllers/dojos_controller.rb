@@ -12,6 +12,12 @@ class DojosController < ApplicationController
 
   def create
     @dojo = current_user.dojos.build(dojo_params)
+    if params[:commit] == "Save Draft"
+      @dojo.post_status = "draft"
+    else
+      @dojo.post_status = "public"
+    end
+
     if @dojo.save
       flash[:notice] = "Artical was successfully created"
       redirect_to dojos_path
@@ -50,7 +56,7 @@ class DojosController < ApplicationController
 
   def destroy
     @dojo.destroy
-    redirect_to dojos_path
+    redirect_to user_path(current_user)
     flash[:alert] = "Artical was deleted"
   end
 
