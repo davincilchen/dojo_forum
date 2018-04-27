@@ -5,7 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @dojo.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save!
+    if not @comment.save
+      flash[:alert] = @comment.errors.full_messages.to_sentence
+    end
     redirect_to dojo_path(@dojo)
   end
 

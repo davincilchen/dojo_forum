@@ -5,6 +5,7 @@
     <tr>
       <td data-link="<%= dojo_path(dojo) %>"><%= dojo.comments_count %></td>
       <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
+      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
       <td data-link="<%= dojo_path(dojo) %>"><%= dojo.viewed_count %></td>
     </tr>
   <% end %>
