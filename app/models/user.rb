@@ -18,10 +18,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
 
- # 「使用者收藏很多文章」的多對多關聯
+  #「使用者收藏很多文章」的多對多關聯
   has_many :collects, dependent: :destroy
   has_many :collected_dojos, through: :collects, source: :dojo
 
+  has_many :vieweds, dependent: :destroy
+  has_many :viewed_dojos, through: :vieweds, source: :dojo
 
   ROLE = {
     normal: "Normal",

@@ -12,6 +12,9 @@ class Dojo < ApplicationRecord
   has_many :dojo_categories
   has_many :categories, through: :dojo_categories
 
+  has_many :vieweds, dependent: :destroy
+  has_many :viewed_users, through: :vieweds, source: :user
+
   def is_collected?(user)
     self.collected_users.include?(user)
   end
