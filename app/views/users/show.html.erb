@@ -56,17 +56,7 @@
     </ul>
 
     <% if @tab == "my_post" || !@tab  %> <!-- ============== tab ============== -->
-      <table class="table table-hover"> <!-- table-striped table-condensed -->
-        <% @dojos.each do |dojo| %>
-          <tr>
-            <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
-            <td data-link="<%= dojo_path(dojo) %>">Published</td>
-            <td data-link="<%= dojo_path(dojo) %>"><%= dojo.created_at.strftime("%F  %I:%M %p") %></td>
-            <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
-            <td><%= link_to 'Destroy', dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
-          </tr>
-        <% end %>
-      </table>
+      <%= render partial: "shared/user_dojo_table"%>
     <% elsif @tab == "my_comment"%> <!-- ============== tab ============== -->
       <br>
       <div class = "col-md-12 col-md-offset-0">
@@ -117,7 +107,10 @@
           </tr>
         <% end %>
       </table>
+    <% elsif @tab == "my_draft"  %> <!-- ============== tab ============== -->
+      <%= render partial: "shared/user_dojo_table"%>
     <% end %> <!-- tab -->
+    <br>
     <% if @user == current_user %>
       <%= link_to "New Post", new_dojo_path, class: "btn btn-primary" %>
     <% end %>

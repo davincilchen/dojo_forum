@@ -6,11 +6,13 @@ class UsersController < ApplicationController
     @edit_type = params[:edit_type]
     @edit_id = params[:edit_id]
     if @tab == "my_post" || !@tab
-      @dojos = @user.dojos
+      @dojos = @user.dojos.where.not(post_status: "draft")
     elsif @tab == "my_comment"
       @comments = @user.comments
     elsif @tab == "my_collect"
       @collects = @user.collects
+    elsif @tab == "my_draft"
+      @dojos = @user.dojos.where(post_status: "draft")
     end
   end 
 

@@ -1,0 +1,15 @@
+<table class="table table-hover"> <!-- table-striped table-condensed -->
+  <% @dojos.each do |dojo| %>
+    <tr>
+      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
+      <% if dojo.post_status == "draft"%>
+        <td data-link="<%= dojo_path(dojo) %>">Draft</td>
+      <% else %>
+        <td data-link="<%= dojo_path(dojo) %>">Published</td>
+      <% end %>
+      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.created_at.strftime("%F  %I:%M %p") %></td>
+      <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
+      <td><%= link_to 'Destroy', dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</table>
