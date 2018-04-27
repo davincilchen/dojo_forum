@@ -19,4 +19,13 @@ class Dojo < ApplicationRecord
     self.collected_users.include?(user)
   end
 
+  def is_viewed?(user)
+    self.viewed_users.include?(user)
+  end
+
+  def viewed_dojo
+    self.viewed_count+=1;
+    self.save
+  end
+
 end

@@ -28,6 +28,8 @@ class DojosController < ApplicationController
   end
 
   def show
+    @dojo.viewed_dojo;
+    @dojo.vieweds.create(user: current_user) unless @dojo.is_viewed?(current_user)
     @comment = Comment.new
     @edit_type = params[:edit_type]
     @edit_id = params[:edit_id]
