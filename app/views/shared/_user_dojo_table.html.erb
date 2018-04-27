@@ -8,8 +8,20 @@
         <td data-link="<%= dojo_path(dojo) %>">Published</td>
       <% end %>
       <td data-link="<%= dojo_path(dojo) %>"><%= dojo.created_at.strftime("%F  %I:%M %p") %></td>
-      <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
-      <td><%= link_to 'Destroy', dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+
+
+      <!-- edit, delete -->
+      <td>
+        <% if current_user == dojo.user %>
+            <%= link_to edit_dojo_path(dojo) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+            <% end %>
+
+            <%= link_to dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
