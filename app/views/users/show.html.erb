@@ -56,12 +56,12 @@
     </ul>
 
     <% if @tab == "my_post" || !@tab  %> <!-- ============== tab ============== -->
-      <table class="table table-striped table-condensed">
+      <table class="table table-hover"> <!-- table-striped table-condensed -->
         <% @dojos.each do |dojo| %>
           <tr>
-            <td><%= dojo.title %></td>
-            <td>Published</td>
-            <td><%= dojo.created_at.strftime("%F, %I:%M %p") %></td>
+            <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
+            <td data-link="<%= dojo_path(dojo) %>">Published</td>
+            <td data-link="<%= dojo_path(dojo) %>"><%= dojo.created_at.strftime("%F  %I:%M %p") %></td>
             <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
             <td><%= link_to 'Destroy', dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
           </tr>
@@ -105,10 +105,10 @@
         <% end %> <!-- comments.each -->
       </div> <!-- col-md -->
     <% elsif @tab == "my_collect"  %> <!-- ============== tab ============== -->
-      <table class="table table-striped table-condensed">
+      <table class="table table-hover"> <!-- table-striped table-condensed -->
         <% @collects.each do |collect| %>
           <tr id=collect-dojo-id-<%= collect.dojo.id %>>
-            <td><h4><%= collect.dojo.title %></h4></td>
+            <td data-link="<%= dojo_path(collect.dojo) %>"><h4><%= collect.dojo.title %></h4></td>
             <% if @user == current_user %>
               <td>
                 <%= link_to 'Uncollect', uncollect_dojo_path(collect.dojo, page: "user"), remote: true, method: :post, class: "btn btn-info .btn-xs" %>
@@ -118,5 +118,15 @@
         <% end %>
       </table>
     <% end %> <!-- tab -->
+    <% if @user == current_user %>
+      <%= link_to "New Post", new_dojo_path, class: "btn btn-primary" %>
+    <% end %>
+
   </div>
 </div>
+
+<script>
+  $("td[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>

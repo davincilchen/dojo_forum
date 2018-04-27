@@ -1,12 +1,17 @@
 <h1>KO Dojo</h1>
 
-<table class="table table-striped table-condensed">
+<table class="table table-hover"> <!-- table-striped table-condensed -->
   <% @dojos.each do |dojo| %>
     <tr>
-      <td><%= dojo.title %></td>
-      <td><%= link_to 'Show', dojo_path(dojo) %></td>
+      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
       <td><%= link_to 'Edit', edit_dojo_path(dojo) %></td>
       <td><%= link_to 'Destroy', dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
     </tr>
   <% end %>
 </table>
+
+<script>
+  $("td[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>
