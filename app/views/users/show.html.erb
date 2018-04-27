@@ -63,7 +63,10 @@
         <% @comments.each do |comment| %>
           <div class="user-comment-item">
             <div class="comment-caption">
-              <h3><%= comment.dojo.title %></h3>
+              <div>
+                <%= link_to comment.dojo.title, dojo_path(comment.dojo) ,class: "btn btn-primary" %>
+              </div>
+              <br>
               <% if current_user == comment.user && @edit_type == "user" && comment.id.to_s == @edit_id %>
                   <%= form_for [comment.dojo, comment] do |f| %>
                     <div class="form-group">
