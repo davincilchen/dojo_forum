@@ -3,6 +3,7 @@
     <td><h2><%= dojo.title %></h2></td>
     <td>
       <%= render partial: "shared/collect", locals: {dojo: dojo}%>
+      <%= link_to "Comment", "#comments" ,class: "btn btn-primary" %>
     </td>
   </tr>
 </table>
