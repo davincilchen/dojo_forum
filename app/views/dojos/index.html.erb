@@ -3,7 +3,7 @@
 <table class="table table-hover"> <!-- table-striped table-condensed -->
   <% @dojos.each do |dojo| %>
     <tr>
-      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.replies_count %></td>
+      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.comments_count %></td>
       <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
       <td data-link="<%= dojo_path(dojo) %>"><%= dojo.viewed_count %></td>
     </tr>
