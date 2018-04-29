@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :feeds, only: :index
+
   root "dojos#index"
 
   namespace :admin do
