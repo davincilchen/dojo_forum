@@ -17,6 +17,14 @@
     <br>
 
     <table class="table table-hover"> <!-- table-striped table-condensed -->
+      <thead>
+        <tr>
+          <th><%= sort_link(@ransack, :comments_count, "Replied count", default_order: :desc) %></th>
+          <th class="text-left">Title</th>
+          <th><%= sort_link(@ransack, :last_replied_at, "Last replied at", default_order: :desc) %></th>
+          <th><%= sort_link(@ransack, :viewed_count, "Viewed count", default_order: :desc) %></th>
+        </tr>
+      </thead>
       <% @dojos.each do |dojo| %>
         <tr>
           <td data-link="<%= dojo_path(dojo) %>"><%= dojo.comments_count %></td>

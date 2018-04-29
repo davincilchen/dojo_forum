@@ -44,6 +44,8 @@ gem 'devise'
 gem 'carrierwave'
 #Use 'ffaker'  20180425
 gem 'ffaker'
+#Use 'ransack' 20180429 for model sort/data sort
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

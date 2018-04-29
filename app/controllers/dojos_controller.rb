@@ -6,10 +6,11 @@ class DojosController < ApplicationController
     @categories = Category.all
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @dojos = @category.dojos.who_can_see_dojos(current_user).public_post
+      @ransack = @category.dojos.who_can_see_dojos(current_user).public_post.ransack(params[:q])
     else
-      @dojos = Dojo.all.who_can_see_dojos(current_user).public_post
+      @ransack = Dojo.who_can_see_dojos(current_user).public_post.ransack(params[:q])
     end
+    @dojos = @ransack.result(distinct: true)
   end
 
   def new
