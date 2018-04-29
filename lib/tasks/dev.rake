@@ -39,7 +39,7 @@ namespace :dev do
   end
 
   task fake_dojo_more: :environment do
-      User.all.sample(30).each do |user|
+      User.all.sample(60).each do |user|
         dojo = user.dojos.build(title: FFaker::Lorem.word,
                         description: FFaker::Lorem.paragraph[0,500],
                         post_status: ["public", "public", "draft"].sample,
@@ -49,7 +49,7 @@ namespace :dev do
 
         dojo.dojo_categories.create(category: Category.all.sample)
       end
-      puts "create 30 fake dojo"
+      puts "create 60 fake dojo"
   end
 
    task fake_clean_comment: :environment do

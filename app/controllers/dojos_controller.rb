@@ -6,9 +6,9 @@ class DojosController < ApplicationController
     @categories = Category.all
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @dojos = @category.dojos
+      @dojos = @category.dojos.public_post
     else
-      @dojos = Dojo.all
+      @dojos = Dojo.all.public_post
     end
   end
 

@@ -15,6 +15,8 @@ class Dojo < ApplicationRecord
   has_many :vieweds, dependent: :destroy
   has_many :viewed_users, through: :vieweds, source: :user
 
+  scope :public_post, -> { where.not(post_status: "draft") }
+
   def is_collected?(user)
     self.collected_users.include?(user)
   end

@@ -44,19 +44,27 @@
     <!-- 使用 Bootstrap components 的 Nav Tabs -->
     <!-- https://getbootstrap.com/docs/3.3/components/#nav-tabs -->
     <!-- if current_page?(user_path) -->
-    <ul class="nav nav-tabs">
-      <li role="presentation" class=<%= raw('active')  if @tab == "my_post" || !@tab  %>> <%= link_to 'My Post', user_path(tab: "my_post") %>
-      </li>
-      <li role="presentation" class=<%= raw('active')  if @tab == "my_comment"%>> <%= link_to 'My Comment', user_path(tab: "my_comment") %>
-      </li>
-      <li role="presentation" class=<%= raw('active')  if @tab == "my_collect"%>> <%= link_to 'My Collect', user_path(tab: "my_collect") %>
-      </li>
-      <li role="presentation" class=<%= raw('active')  if @tab == "my_draft"%>> <%= link_to 'My Draft', user_path(tab: "my_draft") %>
-      </li>
-      <li role="presentation" class=<%= raw('active')  if @tab == "my_friend"%>> <%= link_to 'My Friend', user_path(tab: "my_friend") %>
-      </li>
-    </ul>
-
+    <% if current_user == @user %>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_post" || !@tab  %>> <%= link_to 'My Post', user_path(tab: "my_post") %>
+        </li>
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_comment"%>> <%= link_to 'My Comment', user_path(tab: "my_comment") %>
+        </li>
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_collect"%>> <%= link_to 'My Collect', user_path(tab: "my_collect") %>
+        </li>
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_draft"%>> <%= link_to 'My Draft', user_path(tab: "my_draft") %>
+        </li>
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_friend"%>> <%= link_to 'My Friend', user_path(tab: "my_friend") %>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_post" || !@tab  %>> <%= link_to 'My Post', user_path(tab: "my_post") %>
+        </li>
+        <li role="presentation" class=<%= raw('active')  if @tab == "my_comment"%>> <%= link_to 'My Comment', user_path(tab: "my_comment") %>
+        </li>
+      </ul>
+    <% end %>
     <% if @tab == "my_post" || !@tab  %> <!-- ============== tab ============== -->
       <%= render partial: "shared/user_dojo"%>
     <% elsif @tab == "my_comment"%> <!-- ============== tab ============== -->
@@ -66,7 +74,11 @@
           <div class="user-comment-block">
             <div class="comment-caption">
               <div>
-                <%= link_to comment.dojo.title, dojo_path(comment.dojo) ,class: "btn btn-primary" %>
+                <% if current_user == @user %>
+                  <%= link_to comment.dojo.title, dojo_path(comment.dojo) ,class: "btn btn-primary" %>
+                <% else %>
+                  <div class="label label-info"><%= comment.dojo.title%></div>
+                <% end %>
               </div>
               <br>
               <% if current_user == comment.user && @edit_type == "user" && comment.id.to_s == @edit_id %>
