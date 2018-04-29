@@ -74,4 +74,34 @@ namespace :dev do
     puts "create some fake collects"
   end
 
+  task fake_clean_friendship: :environment do
+    Friendship.destroy_all
+    puts "Clean all friendships"
+  end
+
+  task fake_friendship: :environment do
+    i = 0
+    User.all.each do |user1|
+      i = i +1
+      num = i % 5
+      num = 6-num
+      j = -1
+      User.all.sample(num).each do |user2|
+        j = j + 1
+        unless user1 == user2
+          unless user1.has_friendships?(user2)
+            puts "#{user1.name} add #{user2.name} friend"
+            if j % 3 == 0
+              user1.friendships.create!(friend: user2,accepted: true)
+              puts "#{user2.name} accept #{user1.name} friendship ** "
+            else
+              user1.friendships.create!(friend: user2) 
+            end
+          end
+        end
+      end
+    end
+
+  end
+
 end
