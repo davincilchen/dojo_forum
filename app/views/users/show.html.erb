@@ -30,12 +30,14 @@
         </ul>
       </div>
       <% if current_user == @user %>
-        <%= link_to "Edit Profile", edit_user_path(@user) , class: "btn btn-primary btn-xs" %>
+        <%= link_to "Edit Profile", edit_user_path(@user) , class: "btn btn-primary" %>
+      <% else %>
+        <%= render partial: "shared/friend_button", locals: { user: @user } %>
       <% end %>
       </div>
     </div>
   </div>
-
+  <br>
 
   <!--  =========================================    -->
   <div class="row">
