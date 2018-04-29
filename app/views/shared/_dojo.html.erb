@@ -32,7 +32,7 @@
             <!-- edit, delete -->
             <% if current_user == dojo.user %>
               <% if @edit_type != "post" %>
-                <%= link_to dojo_path(dojo, edit_type: "post",edit_id: dojo.id) do %>
+               <%= link_to edit_dojo_path(dojo) do %>
                   <span class="glyphicon glyphicon-edit"></span>
                 <% end %>
 
