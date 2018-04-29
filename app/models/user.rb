@@ -79,9 +79,7 @@ class User < ApplicationRecord
 
   def create_friendships(user)
     if not self.has_friendships?(user)
-      puts "#{user.id},,,,, #{self.id} ------------------"
       if user.has_friendships?(self)
-        puts "#{user.id},,,,, #{self.id} +++++++++++++++"
         @friendship = user.friendships.find_by(friend_id: self.id)
         if @friendship
           @friendship.update(accepted: true)
@@ -90,8 +88,6 @@ class User < ApplicationRecord
         @friendship = self.friendships.build(friend_id: user.id)
         @friendship.save
       end
-    else
-     puts "#{user.id},,,,, #{self.id} ~~~~~~~~~~~~~~"
     end
   end
 end
