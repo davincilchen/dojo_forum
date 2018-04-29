@@ -93,15 +93,15 @@
 
 .dojo-comment-item {
   border: 1px solid #6495DD;
-  height: 200px;
+  height: 300px;
   margin-bottom: 15px;
 }
 
 
-.comment-user-avatar {
+.comment-user-item {
   border-right: 1px solid #6495DD;
   width: 165px;
-  height: 200px;
+  height: 300px;
 }
 
 .comment-caption {
@@ -111,7 +111,7 @@
 
 /* ---------------- */
 
-.user-comment-item {
+.user-comment-block {
   border: 1px solid #A9A9A9;
   border-radius: 10px;
   height: 180px;

@@ -49,17 +49,8 @@
     <% dojo.comments.each do |comment|%>
       <div class="dojo-comment-item">
         <div class = "col-md-2 col-md-offset-0">
-          <div class="comment-user-avatar">
-            <div class="user-item-image">
-              <% if comment.user.avatar? %>
-                <%= link_to user_path(comment.user) do %>
-                  <%= image_tag comment.user.avatar, class: "img-responsive  img-rounded" %>
-                <% end %>
-              <% else %>
-                 <span class="glyphicon glyphicon-picture"></span>
-              <% end %>
-              <p><span><%= link_to comment.user.name, user_path(comment.user) %></span></p>
-            </div>
+          <div class="comment-user-item">
+            <%= render partial: "shared/user_item", locals: { user: comment.user } %>
           </div>
         </div>
         <div class = "col-md-10 col-md-offset-0">

@@ -61,7 +61,7 @@
       <br>
       <div class = "col-md-12 col-md-offset-0">
         <% @comments.each do |comment| %>
-          <div class="user-comment-item">
+          <div class="user-comment-block">
             <div class="comment-caption">
               <div>
                 <%= link_to comment.dojo.title, dojo_path(comment.dojo) ,class: "btn btn-primary" %>
@@ -94,7 +94,7 @@
                 <% end %>
               <% end %>
             </div> <!-- comment-caption -->
-          </div> <!-- user-comment-item -->
+          </div> <!-- user-comment-block -->
         <% end %> <!-- comments.each -->
       </div> <!-- col-md -->
     <% elsif @tab == "my_collect"  %> <!-- ============== tab ============== -->
