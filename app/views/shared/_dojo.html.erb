@@ -2,24 +2,14 @@
   <div class="row">
     <div class="dojo-item">
       <div class = "col-md-2 col-md-offset-0">
-        <div class="dojo-user-avatar">
-          <div class="dojo-user-image">
-            <% if dojo.user.avatar? %>
-              <%= link_to user_path(dojo.user) do %>
-                <%= image_tag dojo.user.avatar, class: "img-responsive  img-rounded" %>
-              <% end %>
-            <% else %>
-               <span class="glyphicon glyphicon-picture"></span>
-            <% end %>
-            <p><span><%= link_to dojo.user.name, user_path(dojo.user) %></span></p>
-            <%= render partial: "shared/friend_button", locals: {user: dojo.user} %>
-          </div>
+        <div class="dojo-user-item">
+          <%= render partial: "shared/user_item", locals: { user: dojo.user } %>
         </div>
       </div>
       <div class = "col-md-10 col-md-offset-0">
         <div class="caption">
           <div class="post-image">
-             <% if dojo.image? %>
+            <% if dojo.image? %>
                 <%= image_tag dojo.image, class: "img-responsive  img-rounded" %>
             <% else %>
                <span class="glyphicon glyphicon-picture"></span>
@@ -60,7 +50,7 @@
       <div class="dojo-comment-item">
         <div class = "col-md-2 col-md-offset-0">
           <div class="comment-user-avatar">
-            <div class="dojo-user-image">
+            <div class="user-item-image">
               <% if comment.user.avatar? %>
                 <%= link_to user_path(comment.user) do %>
                   <%= image_tag comment.user.avatar, class: "img-responsive  img-rounded" %>

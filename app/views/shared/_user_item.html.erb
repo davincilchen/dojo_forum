@@ -1,12 +1,20 @@
 <div class="user-item text-center mt-3 mb-3">
-  <%= link_to user_path(user), class: "nav-link" do %>
-    <div class="avatar">
-      <%= image_tag user.avatar, width: "100%" if user.avatar? %>
-    </div>
-    <p><strong><%= user.name %></strong></p>
-  <% end %>
+   <div class="user-item-image">
+    <% if user.avatar? %>
+      <%= link_to user_path(user) , class: "nav-link" do %>
+        <%= image_tag user.avatar, class: "img-responsive  img-rounded" %>
+      <% end %>
+    <% else %>
+       <span class="glyphicon glyphicon-picture"></span>
+    <% end %>
+    <p><span><%= link_to user.name, user_path(user) %></span></p>
+    <br>
+    <br>
+  </div>
 
   <div class="links" id="user-<%= user.id %>">
+    <br>
     <%= render partial: "shared/friend_button", locals: { user: user } %>
   </div>
 </div>
+

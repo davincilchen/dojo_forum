@@ -55,20 +55,26 @@
 }
 
 
-.dojo-user-avatar {
+.dojo-user-item{
   border-right: 1px solid #6495DD;
   width: 165px;
   height: 300px;
 }
 
-.dojo-user-image {
+.user-item-image {
   float: left;
-  width: 75px;
-  height: 75px;
-  margin: 15px;
-  margin-top: 30px;
-  margin-left: 35px;
+  width: 140px;
+  height: 140px;
+  padding-bottom: 25px;
+  margin: 35px;
+  margin-top: 20px;
+  margin-left: 5px;
   margin-right: 60px;
+}
+
+.user-item-image  img{
+  width: 140px;
+  height: 140px;
 }
 
 .post-image  img{
@@ -76,10 +82,7 @@
 }
 
 
-.dojo-user-image  img{
-  width: 70px;
-  height: 70px;
-}
+
 
 .caption {
   margin-top: 15px;
