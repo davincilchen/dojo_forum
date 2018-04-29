@@ -57,10 +57,16 @@ namespace :dev do
     puts "Clean all comments"
   end
 
-  task fake_comments: :environment do
+  task fake_comment: :environment do
+    i = 0
     User.all.each do |user|
       Dojo.all.sample(8).each do |dojo|
+        i= i+1
+        x = i%3 + 1
         dojo.comments.create(user: user, content: FFaker::Lorem.paragraph[0,400])
+        x.times do |j|
+          dojo.viewed_dojo
+        end
       end
     end
     puts "create some fake comments"
