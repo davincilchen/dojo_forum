@@ -26,7 +26,7 @@
                 </div>
               <% end %>
             <% else %>
-              <p><%= truncate(dojo.description, length: 320)%></p>
+              <p><%= truncate(dojo.description, length: 500)%></p>
             <% end %>
 
             <!-- edit, delete -->
@@ -65,7 +65,7 @@
                   </div>
                 <% end %>
             <% else %>
-              <p><%= truncate(comment.content, length: 320)%></p>
+              <p><%= truncate(comment.content, length: 500)%></p>
             <% end %>
 
             <!-- edit, delete -->
