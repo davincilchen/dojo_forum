@@ -30,4 +30,8 @@ class Dojo < ApplicationRecord
     self.save
   end
 
+
+ def self.who_can_see_dojos(user)
+    Dojo.where(authority: "all").or(where(authority: "friend", user: user.all_friends)).or(where(authority: "myself", user: user)).or(where( user: user))
+  end
 end

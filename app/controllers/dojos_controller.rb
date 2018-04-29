@@ -6,9 +6,9 @@ class DojosController < ApplicationController
     @categories = Category.all
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @dojos = @category.dojos.public_post
+      @dojos = @category.dojos.who_can_see_dojos(current_user).public_post
     else
-      @dojos = Dojo.all.public_post
+      @dojos = Dojo.all.who_can_see_dojos(current_user).public_post
     end
   end
 
