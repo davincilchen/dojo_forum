@@ -12,6 +12,7 @@
                <span class="glyphicon glyphicon-picture"></span>
             <% end %>
             <p><span><%= link_to dojo.user.name, user_path(dojo.user) %></span></p>
+            <%= render partial: "shared/friend_button", locals: {user: dojo.user} %>
           </div>
         </div>
       </div>

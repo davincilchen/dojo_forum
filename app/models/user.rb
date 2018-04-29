@@ -31,7 +31,7 @@ class User < ApplicationRecord
   has_many :friends_not_acceted, -> {where accepted: false}, through: :friendship
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, -> {where accepted: true}, through: :inverse_friendships, source: :user
-  #加我但還沒回應
+  #加我但我還沒回應
   has_many :friends_not_responded, -> {where accepted: false}, through: :inverse_friendships, source: :user
 
   ROLE = {
@@ -41,6 +41,10 @@ class User < ApplicationRecord
   # admin? 判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
+  end
+
+  def friend?(user)
+    self.friends.include?(user) || self.inverse_friends.include?(user)
   end
 
   def is_not_accepted_by?(user)
