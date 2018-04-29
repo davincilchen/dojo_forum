@@ -46,7 +46,7 @@
     </div>
 
     <!-- comments -->
-    <% dojo.comments.each do |comment|%>
+    <% @comments.each do |comment|%>
       <div class="dojo-comment-item">
         <div class = "col-md-2 col-md-offset-0">
           <div class="comment-user-item">
@@ -86,5 +86,8 @@
       </div> <!-- dojo-comment-item -->
     <%end%> <!-- comments -->
 
+    <div class="text-center">
+      <%= paginate @comments %>
+    </div>
   </div>
 </div>

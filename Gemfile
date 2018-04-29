@@ -46,6 +46,8 @@ gem 'carrierwave'
 gem 'ffaker'
 #Use 'ransack' 20180429 for model sort/data sort
 gem 'ransack'
+#Use 'kaminari' 20180429 for page
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

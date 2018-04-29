@@ -10,7 +10,7 @@ class DojosController < ApplicationController
     else
       @ransack = Dojo.who_can_see_dojos(current_user).public_post.ransack(params[:q])
     end
-    @dojos = @ransack.result(distinct: true)
+    @dojos = @ransack.result(distinct: true).page(params[:page]).per(20)
   end
 
   def new
@@ -38,6 +38,7 @@ class DojosController < ApplicationController
     @dojo.viewed_dojo;
     @dojo.vieweds.create(user: current_user) unless @dojo.is_viewed?(current_user)
     @comment = Comment.new
+    @comments = @dojo.comments.includes(:user).page(params[:page]).per(20)
     @edit_type = params[:edit_type]
     @edit_id = params[:edit_id]
   end

@@ -36,8 +36,12 @@
         </tr>
       <% end %>
     </table>
+    <div class="text-center">
+      <%= paginate @dojos %>
+    </div>
   </div>
 </div>
+
 
 <script>
   $("td[data-link]").click(function() {
