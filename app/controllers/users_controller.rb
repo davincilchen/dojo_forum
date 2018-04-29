@@ -13,6 +13,10 @@ class UsersController < ApplicationController
       @collects = @user.collects
     elsif @tab == "my_draft"
       @dojos = @user.dojos.where(post_status: "draft")
+    elsif @tab == "my_friend"
+      @friends = @user.all_friends
+      @friends_not_acceted = @user.friends_not_acceted
+      @friends_not_responded = @user.friends_not_responded
     end
   end 
 

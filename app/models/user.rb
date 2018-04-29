@@ -45,10 +45,6 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
-  def has_friendships?(user)
-    self.friendships.include?(user)
-  end
-
   def friend?(user)
     self.friends.include?(user) || self.inverse_friends.include?(user)
   end
@@ -61,9 +57,41 @@ class User < ApplicationRecord
     self.friends_not_responded.include?(user)
   end
 
+  def has_friendships?(user)
+    if self.friend?(user)
+      return true
+    else
+      if self.is_not_accepted_by?(user)
+        return true
+      else
+        return false
+      end
+    end
+  end
+
+
+
   #我加的人和加我的人
   def all_friends
     friends = self.friends + self.inverse_friends
     return friends.uniq
+  end
+
+  def create_friendships(user)
+    if not self.has_friendships?(user)
+      puts "#{user.id},,,,, #{self.id} ------------------"
+      if user.has_friendships?(self)
+        puts "#{user.id},,,,, #{self.id} +++++++++++++++"
+        @friendship = user.friendships.find_by(friend_id: self.id)
+        if @friendship
+          @friendship.update(accepted: true)
+        end
+      else
+        @friendship = self.friendships.build(friend_id: user.id)
+        @friendship.save
+      end
+    else
+     puts "#{user.id},,,,, #{self.id} ~~~~~~~~~~~~~~"
+    end
   end
 end

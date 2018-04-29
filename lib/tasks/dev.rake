@@ -89,19 +89,26 @@ namespace :dev do
       User.all.sample(num).each do |user2|
         j = j + 1
         unless user1 == user2
-          unless user1.has_friendships?(user2)
-            puts "#{user1.name} add #{user2.name} friend"
-            if j % 3 == 0
-              user1.friendships.create!(friend: user2,accepted: true)
-              puts "#{user2.name} accept #{user1.name} friendship ** "
-            else
-              user1.friendships.create!(friend: user2) 
-            end
-          end
+          user1.create_friendships(user2)
+          puts "#{user1.name} add #{user2.name} friend"
         end
       end
     end
+  end
 
+  task show_friendship: :environment do
+    User.all.each do |user1|
+      puts ""
+      puts " ======================= "
+      @friendships = user1.friendships
+      @friendships.each do |friendships|
+        puts "#{user1.id} has friendships #{friendships.friend_id}"
+      end
+      @inverse_friendships = user1.inverse_friendships
+      @inverse_friendships.each do |friendships|
+        puts "#{user1.id} has inverse_friendships #{friendships.user_id}"
+      end
+    end
   end
 
 end

@@ -1,0 +1,30 @@
+<div class="container border">
+  <h4 class="text-center">Wait response</h4>
+  <div class="row" id="wait-friend">
+    <% @friends_not_acceted.each do |user| %>
+      <div class="col-sm-2" id="user-<%= user.id %>">
+        <%= render partial: "shared/user_item", locals: { user: user } %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="container border">
+  <h4 class="text-center">Friend invitation</h4>
+  <div class="row" id="unaccept-friend">
+    <% @friends_not_responded.each do |user| %>
+      <div class="col-sm-2" id="user-<%= user.id %>">
+        <%= render partial: "shared/user_item", locals: { user: user } %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="container border">
+  <h4 class="text-center">Friend list</h4>
+  <div class="row" id="friend">
+    <% @friends.each do |user| %>
+      <div class="col-sm-2" id="user-<%= user.id %>">
+        <%= render partial: "shared/user_item", locals: { user: user } %>
+      </div>
+    <% end %>
+  </div>
+</div>

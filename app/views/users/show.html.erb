@@ -56,7 +56,7 @@
     </ul>
 
     <% if @tab == "my_post" || !@tab  %> <!-- ============== tab ============== -->
-      <%= render partial: "shared/user_dojo_table"%>
+      <%= render partial: "shared/user_dojo"%>
     <% elsif @tab == "my_comment"%> <!-- ============== tab ============== -->
       <br>
       <div class = "col-md-12 col-md-offset-0">
@@ -111,7 +111,9 @@
         <% end %>
       </table>
     <% elsif @tab == "my_draft"  %> <!-- ============== tab ============== -->
-      <%= render partial: "shared/user_dojo_table"%>
+      <%= render partial: "shared/user_dojo"%>
+    <% elsif @tab == "my_friend"  %> <!-- ============== tab ============== -->
+      <%= render partial: "shared/user_friend"%>
     <% end %> <!-- tab -->
     <br>
     <% if @user == current_user %>
