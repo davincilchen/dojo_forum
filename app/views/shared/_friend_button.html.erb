@@ -1,0 +1,13 @@
+<% if user !=  current_user %>
+  <% unless current_user.friend?(user) %>
+    <% if current_user.is_not_accepted_by?(user) %>
+      <div class="label label-warning">Wait friend check</div>
+    <% elsif current_user.is_not_responded_to?(user) %>
+      <%= link_to "Accept freind", accept_friendship_path(user), class: "btn btn-primary", method: :post%>
+      <br><br>
+      <%= link_to "Ignore freind", ignore_friendship_path(user), class: "btn btn-danger", method: :delete%>
+    <% else %>
+      <%= link_to "Add friend", friendships_path(friend_id: user), class: "btn btn-primary", method: :post%>
+    <% end %>
+  <% end %>
+<% end %>

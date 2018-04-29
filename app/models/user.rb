@@ -25,14 +25,16 @@ class User < ApplicationRecord
   has_many :vieweds, dependent: :destroy
   has_many :viewed_dojos, through: :vieweds, source: :dojo
 
+  #has_many :friendships, -> {where accepted: true}, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friends, -> {where accepted: true}, through: :friendships
+  has_many :friends, -> { where(friendships: { accepted: true } ) } , through: :friendships
   #我加的但對方還沒接受
-  has_many :friends_not_acceted, -> {where accepted: false}, through: :friendship
+  has_many :friends_not_acceted, -> { where(friendships: { accepted: false } ) } , through: :friendships, source: :friend
+
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
-  has_many :inverse_friends, -> {where accepted: true}, through: :inverse_friendships, source: :user
+  has_many :inverse_friends, -> { where(friendships: { accepted: true } ) }, through: :inverse_friendships , source: :user
   #加我但我還沒回應
-  has_many :friends_not_responded, -> {where accepted: false}, through: :inverse_friendships, source: :user
+  has_many :friends_not_responded, -> { where(friendships: { accepted: false } ) }, through: :inverse_friendships , source: :user
 
   ROLE = {
     normal: "Normal",
@@ -41,6 +43,10 @@ class User < ApplicationRecord
   # admin? 判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
+  end
+
+  def has_friendships?(user)
+    self.friendships.include?(user)
   end
 
   def friend?(user)
