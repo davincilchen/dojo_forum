@@ -25,6 +25,15 @@ class User < ApplicationRecord
   has_many :vieweds, dependent: :destroy
   has_many :viewed_dojos, through: :vieweds, source: :dojo
 
+  has_many :friendships, dependent: :destroy
+  has_many :friends, -> {where accepted: true}, through: :friendships
+  #我加的但對方還沒接受
+  has_many :friends_not_acceted, -> {where accepted: false}, through: :friendship
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :inverse_friends, -> {where accepted: true}, through: :inverse_friendships, source: :user
+  #加我但還沒回應
+  has_many :friends_not_responded, -> {where accepted: false}, through: :inverse_friendships, source: :user
+
   ROLE = {
     normal: "Normal",
     admin: "Admin"
@@ -32,5 +41,19 @@ class User < ApplicationRecord
   # admin? 判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
     self.role == "admin"
+  end
+
+  def is_not_accepted_by?(user)
+    self.friends_not_acceted.include?(user)
+  end
+
+  def is_not_responded_to?(user)
+    self.friends_not_responded.include?(user)
+  end
+
+  #我加的人和加我的人
+  def all_friends
+    friends = self.friends + self.inverse_friends
+    return friends.uniq
   end
 end
