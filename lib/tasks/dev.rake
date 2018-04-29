@@ -24,20 +24,32 @@ namespace :dev do
     puts "Clean all dojos"
   end
 
-  task fake_dojo_less: :environment do
-      User.all.sample(8).each do |user|
-        dojo = user.dojos.build(title: FFaker::Lorem.word ,description: FFaker::Lorem.paragraph[0,500])
+  task fake_dojo: :environment do
+      User.all.sample(15).each do |user|
+        dojo = user.dojos.build(title: FFaker::Lorem.word,
+                        description: FFaker::Lorem.paragraph[0,500],
+                        post_status: ["public", "public", "draft"].sample,
+                        authority: ["myself", "friend", "all"].sample
+                        )
         dojo.save!
+
+        dojo.dojo_categories.create(category: Category.all.sample)
       end
-      puts "create 8 fake dojo"
+      puts "create 15 fake dojo"
   end
 
   task fake_dojo_more: :environment do
-      User.all.sample(15).each do |user|
-        dojo = user.dojos.build(title: FFaker::Lorem.word ,description: FFaker::Lorem.paragraph[0,500])
+      User.all.sample(30).each do |user|
+        dojo = user.dojos.build(title: FFaker::Lorem.word,
+                        description: FFaker::Lorem.paragraph[0,500],
+                        post_status: ["public", "public", "draft"].sample,
+                        authority: ["myself", "friend", "all"].sample
+                        )
         dojo.save!
+
+        dojo.dojo_categories.create(category: Category.all.sample)
       end
-      puts "create 15 fake dojo"
+      puts "create 30 fake dojo"
   end
 
    task fake_clean_comment: :environment do

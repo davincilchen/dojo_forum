@@ -3,7 +3,13 @@ class DojosController < ApplicationController
   before_action :set_dojo, only:[:show, :edit, :update, :destroy, :collect, :uncollect]
 
   def index
-    @dojos = Dojo.all
+    @categories = Category.all
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @dojos = @category.dojos
+    else
+      @dojos = Dojo.all
+    end
   end
 
   def new

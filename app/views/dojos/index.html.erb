@@ -1,15 +1,33 @@
-<h1>KO Dojo</h1>
+<div class="container">
+  <div class="row">
+    <ul class="nav nav-pills nav-pills-center">
+      <% if @category %>
+        <li role="presentation"><%= link_to "All", dojos_path%></li>
+      <% else %>
+        <li role="presentation" class='active'><%= link_to "All", dojos_path%></li>
+      <% end %>
+      <% @categories.each do |category| %>
+        <% if @category && category.id == @category.id %>
+          <li role="presentation" class='active'><%= link_to category.name, dojos_path(category_id: category.id)%></li>
+        <% else %>
+          <li role="presentation"><%= link_to category.name, dojos_path(category_id: category.id)%></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br>
 
-<table class="table table-hover"> <!-- table-striped table-condensed -->
-  <% @dojos.each do |dojo| %>
-    <tr>
-      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.comments_count %></td>
-      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
-      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
-      <td data-link="<%= dojo_path(dojo) %>"><%= dojo.viewed_count %></td>
-    </tr>
-  <% end %>
-</table>
+    <table class="table table-hover"> <!-- table-striped table-condensed -->
+      <% @dojos.each do |dojo| %>
+        <tr>
+          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.comments_count %></td>
+          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
+          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
+          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.viewed_count %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 <script>
   $("td[data-link]").click(function() {
