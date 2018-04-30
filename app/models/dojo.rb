@@ -9,7 +9,7 @@ class Dojo < ApplicationRecord
   has_many :collects, dependent: :destroy
   has_many :collected_users, through: :collects, source: :user
 
-  has_many :dojo_categories
+  has_many :dojo_categories, dependent: :destroy
   has_many :categories, through: :dojo_categories
 
   has_many :vieweds, dependent: :destroy

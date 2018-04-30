@@ -1,7 +1,22 @@
 namespace :dev do
 
- task fake_user: :environment do
+  task fake_clean_category: :environment do
+    Category.destroy_all
+    puts "Clean all categories"
+  end
+
+  task fake_clean_dojo_category: :environment do
+    DojoCategory.destroy_all
+    puts "Clean all dojo categories"
+  end
+
+  task fake_clean_user: :environment do
     User.destroy_all
+    puts "Clean all users"
+  end
+
+  task fake_user: :environment do
+
     20.times do |i|
       name = FFaker::Name::first_name
       file = File.open("#{Rails.root}/public/avatar/user#{i+1}.jpg")
