@@ -28,10 +28,19 @@ Rails.application.routes.draw do
 
   root "dojos#index"
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+
+      post "/login" => "auth#login"
+      post "/logout" => "auth#logout"
+
+      resources :posts, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
+
   namespace :admin do
     resources :categories
     resources :users, only: [:index, :update]
     root "categories#index"
   end
-
 end
