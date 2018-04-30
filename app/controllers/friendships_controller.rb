@@ -1,4 +1,4 @@
-class FriendshipsController < ApplicationController
+class FriendshipsController < BaseController
   def create
     @user = User.find(params[:friend_id])
     current_user.create_friendships(@user)

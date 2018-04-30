@@ -32,8 +32,6 @@
           <td><%= dojo.title %></td>
           <td><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
           <td><%= dojo.viewed_count %></td>
-          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.post_status %></td>
-          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.authority %></td>
         </tr>
       <% end %>
     </table>

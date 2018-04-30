@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < BaseController
   before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_dojo, only: [:create, :update, :destroy]
 

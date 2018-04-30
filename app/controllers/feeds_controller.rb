@@ -1,4 +1,4 @@
-class FeedsController < ApplicationController
+class FeedsController < BaseController
   def index
     @user_count = User.all.count
     @dojo_count = Dojo.public_post.count
