@@ -58,6 +58,14 @@ class Api::V1::PostsController < ApiController
     end
   end
 
+  def destroy
+    @post.destroy
+    render json: {
+      message: "Artical was deleted"
+    }
+  end
+
+
   private
 
     def post_params
