@@ -1,4 +1,4 @@
-class Api::V1::PostsController < ApplicationController
+class Api::V1::PostsController < ApiController
   before_action :authenticate_user!, except: :index
   before_action :set_post, only: [:show, :update, :destroy]
 
@@ -27,6 +27,33 @@ class Api::V1::PostsController < ApplicationController
       render json: {
         message: "Can't find the post!",
         status: 400
+      }
+    end
+  end
+
+   def create
+    @post = current_user.dojos.build(post_params)
+    if @post.save
+      render json: {
+        message: "Artical was successfully created",
+        result: @post
+      }
+    else
+      render json: {
+        errors: @post.errors
+      }
+    end
+  end
+
+  def update
+    if @post.update(post_params)
+      render json: {
+        message: "Artical was successfully updated",
+        result: @post
+      }
+    else
+      render json: {
+        errors: @post.errors
       }
     end
   end
