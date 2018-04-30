@@ -33,7 +33,11 @@ class Api::V1::PostsController < ApplicationController
 
   private
 
-  def set_post
-    @post = Dojo.find_by(id: params[:id])
-  end
+    def post_params
+      params.permit(:title, :description, :post_status, :authority, :image, category_ids: [])
+    end
+
+    def set_post
+      @post = Dojo.find_by(id: params[:id])
+    end
 end

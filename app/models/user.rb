@@ -36,6 +36,9 @@ class User < ApplicationRecord
   #加我但我還沒回應
   has_many :friends_not_responded, -> { where(friendships: { accepted: false } ) }, through: :inverse_friendships , source: :user
 
+
+  before_create :generate_authentication_token
+
   ROLE = {
     normal: "Normal",
     admin: "Admin"
@@ -90,4 +93,11 @@ class User < ApplicationRecord
       end
     end
   end
+
+
+
+  def generate_authentication_token
+     self.authentication_token = Devise.friendly_token
+  end
+
 end
