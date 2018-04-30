@@ -21,9 +21,14 @@
             <span class="icon-bar"></span>
           </button>
 
-          <%= link_to "KO Dojo", root_path,  class:  "navbar-brand" %> <!-- <a class="navbar-brand" href="#">Some Title</a> -->
-          <%= link_to "Feeds", feeds_path,  class:  "navbar-brand" %>
-          <%= link_to "New Post", new_dojo_path,  class:  "navbar-brand" %>
+          <ul class="pull-left text-right nav navbar-nav">
+            <li><p class="navbar-text KO-Dojo"><%= link_to "KO Dojo", root_path %></p> <!-- <a
+            class="navbar-brand" href="#">Some Title</a> -->
+
+            <li><p class="navbar-text"><%= link_to "Feeds", feeds_path%></p>
+            <li><p class="navbar-text"> <%= link_to "All post", dojos_path%></p>
+            <li><p class="navbar-text"><%= link_to "New Post", new_dojo_path%></p>
+          </ul>
 
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,8 +37,13 @@
              <!-- check user -->
              <% if current_user %>
               <% if current_user.admin? %>
-                <li><%= link_to "Admin  Panel", admin_categories_path %></li>
+                <li><p class="navbar-text"><%= link_to "Admin  Panel", admin_categories_path %></li>
+                <li><p class="navbar-text"><%= link_to current_user.email+"(Admin)", user_path(current_user) %></li>
+              <% else %>
+                <li><p class="navbar-text"><%= link_to current_user.email+"(Normal)", user_path(current_user) %></li>
               <% end %>
+
+                <li><p class="navbar-text"><%= link_to "Profile", user_path(current_user) %></li>
               <% if current_user.avatar?%>
                 <li>
                   <div class="navbar-user-image">
@@ -46,7 +56,6 @@
                 <%= link_to user_path(current_user) do %>
                   <span class="glyphicon glyphicon-picture"></span>
                 <% end %>
-                <li><p class="navbar-text"><%= link_to current_user.name, user_path(current_user) %></p></li>
               <% end %>
 
               <ul class="pull-right text-right nav navbar-nav">
