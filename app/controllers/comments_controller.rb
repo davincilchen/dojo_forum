@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_dojo, only: [:create, :update, :destroy]
 
   def create
@@ -11,28 +11,30 @@ class CommentsController < ApplicationController
     redirect_to dojo_path(@dojo)
   end
 
+  def edit
+
+  end
 
   def update
     if @comment.update(comment_params)
-      flash[:notice] = "Comment was successfully updated"
+      #flash[:notice] = "Comment was successfully updated"
     else
-      flash[:alert] = "Fail to update comment "
+      #flash[:alert] = "Fail to update comment "
     end
-    redirect_to dojo_path(@dojo)
+
   end
 
   def destroy
     if @comment
       if @comment.user == current_user
         @comment.destroy
-        flash[:alert] = "Comment was deleted"
+        #flash[:alert] = "Comment was deleted"
       else
-        flash[:alert] = "Current user is not user of the comment"
+        #flash[:alert] = "Current user is not user of the comment"
       end
     else
-      flash[:alert] = "Fail to delete comment"
+      #flash[:alert] = "Fail to delete comment"
     end
-    redirect_to dojo_path(@dojo)
   end
 
 

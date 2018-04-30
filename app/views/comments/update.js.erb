@@ -1,0 +1,3 @@
+<% html = j( render :partial => "shared/comment_text", 
+  :locals => { dojo: @comment.dojo, comment: @comment, edit_type: "" } ) %>
+$("#text-<%= @comment.id %>").html("<%= html %>")

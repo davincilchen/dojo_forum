@@ -1,0 +1,13 @@
+  <% if current_user == comment.user && edit_type == "comment" && %>
+      <%= form_for [dojo, comment], remote: true  do |f| %>
+      
+        <div class="form-group">
+          <%= f.text_area :content, placeholder: comment.content, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Update",remote: true , class: "btn btn-primary btn-sm"%>
+        </div>
+      <% end %>
+  <% else %>
+    <p><%= truncate(comment.content, length: 500)%></p>
+  <% end %>

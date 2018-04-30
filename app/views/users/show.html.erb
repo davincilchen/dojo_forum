@@ -71,7 +71,7 @@
       <br>
       <div class = "col-md-12 col-md-offset-0">
         <% @comments.each do |comment| %>
-          <div class="user-comment-block">
+          <div class="user-comment-block" id="comment-<%= comment.id %>">
             <div class="comment-caption">
               <div>
                 <% if current_user == @user %>
@@ -81,28 +81,19 @@
                 <% end %>
               </div>
               <br>
-              <% if current_user == comment.user && @edit_type == "user" && comment.id.to_s == @edit_id %>
-                  <%= form_for [comment.dojo, comment] do |f| %>
-                    <div class="form-group">
-                      <%= f.text_area :content, placeholder: comment.content, class: "form-control" %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.submit "Update", class: "btn btn-primary btn-sm" %>
-                    </div>
-                  <% end %>
-              <% else %>
-                <p><%= truncate(comment.content, length: 500)%></p>
-              <% end %>
+              <div id="text-<%= comment.id %>">
+                <%= render partial: "shared/comment_text", locals: {dojo: comment.dojo, comment: comment, edit_type: @edit_type, edit_id: @edit_id} %>
+              </div>
 
               <!-- edit, delete -->
               <% if current_user == comment.user %>
                 <% if comment.id.to_s != @edit_id %>
 
-                  <%= link_to user_path(tab: "my_comment", edit_type: "user", edit_id: comment.id) do %>
+                  <%= link_to edit_dojo_comment_path(comment.dojo, comment.id,tab: "my_comment", edit_type: "user", edit_id: comment.id) , remote: true do %>
                     <span class="glyphicon glyphicon-edit"></span>
                   <% end %>
 
-                  <%= link_to dojo_comment_path(comment.dojo, comment.id), method: :delete, data: {confirm:"Are you sure?"} do %>
+                  <%= link_to dojo_comment_path(comment.dojo, comment.id), remote: true, method: :delete, data: {confirm:"Are you sure?"} do %>
                     <span class="glyphicon glyphicon-trash"></span>
                   <% end %>
                 <% end %>

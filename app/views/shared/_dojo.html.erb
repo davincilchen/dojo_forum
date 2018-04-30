@@ -47,7 +47,7 @@
 
     <!-- comments -->
     <% @comments.each do |comment|%>
-      <div class="dojo-comment-item">
+      <div class="dojo-comment-item" id="comment-<%= comment.id %>">
         <div class = "col-md-2 col-md-offset-0">
           <div class="comment-user-item">
             <%= render partial: "shared/user_item", locals: { user: comment.user } %>
@@ -55,28 +55,19 @@
         </div>
         <div class = "col-md-10 col-md-offset-0">
           <div class="comment-caption">
-            <% if current_user == comment.user && @edit_type == "comment" && comment.id.to_s == @edit_id %>
-                <%= form_for [dojo, comment] do |f| %>
-                  <div class="form-group">
-                    <%= f.text_area :content, placeholder: comment.content, class: "form-control" %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.submit "Update", class: "btn btn-primary btn-sm" %>
-                  </div>
-                <% end %>
-            <% else %>
-              <p><%= truncate(comment.content, length: 500)%></p>
-            <% end %>
-
+              <div id="text-<%= comment.id %>">
+              <%= render partial: "shared/comment_text", locals: {dojo: dojo, comment: comment, edit_type: @edit_type, edit_id: @edit_id} %>
+              </div>
             <!-- edit, delete -->
             <% if current_user == comment.user %>
               <% if comment.id.to_s != @edit_id %>
+                
+                <%= link_to edit_dojo_comment_path(comment.dojo, comment.id, edit_type: "comment", edit_id: comment.id) , remote: true do %>
+                    <span class="glyphicon glyphicon-edit"></span>
+                  <% end %>
 
-                <%= link_to dojo_path(dojo,edit_type: "comment", edit_id: comment.id) do %>
-                  <span class="glyphicon glyphicon-edit"></span>
-                <% end %>
 
-                <%= link_to dojo_comment_path(dojo, comment.id), method: :delete, data: {confirm:"Are you sure?"} do %>
+                <%= link_to dojo_comment_path(dojo, comment.id), remote: true, method: :delete, data: {confirm:"Are you sure?"} do %>
                   <span class="glyphicon glyphicon-trash"></span>
                 <% end %>
               <% end %>
