@@ -9,7 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use sqlite3 as the database for Active Record
+#gem 'sqlite3'  #move to group :development, :test do //20180328-02
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -49,12 +50,21 @@ gem 'ransack'
 #Use 'kaminari' 20180429 for page
 gem 'kaminari'
 
+#add gem 'pg' in production  //2018030
+# $ brew install postgresql
+group :production do
+  gem 'pg'
+end
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  #Add gem 'sqlite3' //20180430-02
+  gem 'sqlite3'
 end
 
 group :development do
