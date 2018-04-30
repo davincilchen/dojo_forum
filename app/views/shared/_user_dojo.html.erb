@@ -30,7 +30,13 @@
             <%= link_to dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } do %>
               <span class="glyphicon glyphicon-trash"></span>
             <% end %>
+        <% elsif current_user.admin? %>
+            <%= link_to dojo_path(dojo), method: :delete, data:{ confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
         <% end %>
+
+
       </td>
     </tr>
   <% end %>

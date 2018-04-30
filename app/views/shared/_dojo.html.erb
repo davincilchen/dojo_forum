@@ -40,7 +40,14 @@
                   <span class="glyphicon glyphicon-trash"></span>
                 <% end %>
               <% end %>
+            <% elsif current_user.admin? %>
+              <%= link_to dojo_path(dojo), method: :delete, data: {confirm:"Are you sure?"} do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
             <% end %>
+
+
+
         </div>
       </div>
     </div>
@@ -71,7 +78,13 @@
                   <span class="glyphicon glyphicon-trash"></span>
                 <% end %>
               <% end %>
+            <% elsif current_user.admin? %>
+              <%= link_to dojo_comment_path(dojo, comment.id), remote: true, method: :delete, data: {confirm:"Are you sure?"} do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
             <% end %>
+
+
           </div> <!-- comment-caption -->
         </div> <!-- col-md -->
       </div> <!-- dojo-comment-item -->
