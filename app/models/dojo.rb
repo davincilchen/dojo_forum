@@ -31,7 +31,11 @@ class Dojo < ApplicationRecord
   end
 
 
- def self.who_can_see_dojos(user)
-    Dojo.where(authority: "all").or(where(authority: "friend", user: user.all_friends)).or(where(authority: "myself", user: user)).or(where( user: user))
+  def self.who_can_see_dojos(user)
+    if user
+      Dojo.where(authority: "all").or(where(authority: "friend", user: user.all_friends)).or(where(authority: "myself", user: user)).or(where( user: user))
+    else
+      Dojo.where(authority: "all")
+    end
   end
 end
