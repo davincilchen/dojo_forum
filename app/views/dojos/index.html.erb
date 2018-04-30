@@ -26,11 +26,12 @@
         </tr>
       </thead>
       <% @dojos.each do |dojo| %>
-        <tr>
-          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.comments_count %></td>
-          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.title %></td>
-          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
-          <td data-link="<%= dojo_path(dojo) %>"><%= dojo.viewed_count %></td>
+        <tr data-link="<%= dojo_path(dojo) %>">
+
+          <td><%= dojo.comments_count %></td>
+          <td><%= dojo.title %></td>
+          <td><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
+          <td><%= dojo.viewed_count %></td>
           <td data-link="<%= dojo_path(dojo) %>"><%= dojo.post_status %></td>
           <td data-link="<%= dojo_path(dojo) %>"><%= dojo.authority %></td>
         </tr>
@@ -42,9 +43,8 @@
   </div>
 </div>
 
-
 <script>
-  $("td[data-link]").click(function() {
+  $("tr[data-link]").click(function() {
     window.location = $(this).data("link")
   })
 </script>
