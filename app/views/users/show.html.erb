@@ -102,6 +102,9 @@
           </div> <!-- user-comment-block -->
         <% end %> <!-- comments.each -->
       </div> <!-- col-md -->
+      <div class="text-center">
+        <%= paginate @comments %>
+      </div>
     <% elsif @tab == "my_collect"  %> <!-- ============== tab ============== -->
       <table class="table table-hover"> <!-- table-striped table-condensed -->
         <% @collects.each do |collect| %>

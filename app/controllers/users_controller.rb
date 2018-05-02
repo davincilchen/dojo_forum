@@ -8,7 +8,7 @@ class UsersController < BaseController
     if @tab == "my_post" || !@tab
       @dojos = @user.dojos.where.not(post_status: "draft")
     elsif @tab == "my_comment"
-      @comments = @user.comments
+      @comments = @user.comments.page(params[:page]).per(20)
     elsif @tab == "my_collect"
       @collects = @user.collects
     elsif @tab == "my_draft"
