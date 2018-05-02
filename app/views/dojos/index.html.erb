@@ -31,7 +31,7 @@
           <td><%= dojo.comments_count %></td>
           <td><%= dojo.title %></td>
           <td><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>
-          <td><%= dojo.viewed_count %></td>
+          <td><span class="glyphicon glyphicon-eye-open"></span><span>    </span><%= dojo.viewed_count %></td>
         </tr>
       <% end %>
     </table>
