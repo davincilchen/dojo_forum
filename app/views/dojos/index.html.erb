@@ -27,7 +27,7 @@
       </thead>
       <% @dojos.each do |dojo| %>
         <tr data-link="<%= dojo_path(dojo) %>">
-
+          <td><p class="border" style="width: 50px;"><%= dojo.comments_count %></p></td>
           <td><%= dojo.comments_count %></td>
           <td><%= dojo.title %></td>
           <td><%= dojo.last_replied_at.strftime("%Y-%m-%d") if dojo.last_replied_at.present? %></td>

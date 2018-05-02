@@ -73,14 +73,17 @@ namespace :dev do
   end
 
   task fake_comment: :environment do
-    i = 0
     User.all.each do |user|
-      Dojo.all.sample(8).each do |dojo|
-        i= i+1
-        x = i%3 + 1
-        dojo.comments.create(user: user, content: FFaker::Lorem.paragraph[0,400])
-        x.times do |j|
-          dojo.viewed_dojo
+      4.times do |i|
+        Dojo.all.sample(4).each do |dojo|
+          x = rand 1..2
+          y = rand 1..2
+          x.times do |j|
+            dojo.comments.create(user: user, content: FFaker::Lorem.paragraph[0,400])
+            y.times do |k|
+              dojo.viewed_dojo
+            end
+          end
         end
       end
     end

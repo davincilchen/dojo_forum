@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   belongs_to :dojo, counter_cache: true
 
   after_save :update_last_replied_at_to_dojo
